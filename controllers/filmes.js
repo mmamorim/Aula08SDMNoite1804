@@ -12,7 +12,7 @@ db.read().then(function () {
 const controller = {
 
   showList: function (req, res) {
-    console.log(db.data);
+    //console.log(db.data);
     res.status(200).json(db.data.filmes);
   },
   add: function (req, res) {
