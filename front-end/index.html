@@ -7,26 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste API Bandas e filmes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
 
-    <h1 class="text-2xl bg-gray-50 p-3 mb-2">Teste API</h1>
+    <div id="app">
 
-    <button id="" class="border rounded bg-gray-50 p-1 mx-1">Pegar bandas (GET)</button>
-    <button class="border rounded bg-gray-50 p-1 mx-1">Incluir bandas (POST)</button>
-    <button class="border rounded bg-gray-50 p-1 mx-1">Alterar bandas (PUT)</button>
-    <button class="border rounded bg-gray-50 p-1 mx-1">Remover bandas (DELETE)</button>
+        <h1 class="text-2xl bg-gray-50 p-3 mb-2">
+            {{titulo}}
+        </h1>
 
-    <div class="grid grid-cols-3 justify-start px-2">
-        <div class="border rounded px-2 my-2 bg-gray-100">
-            Resposta do servidor:
-            <div class="border rounded px-2 my-2 bg-white">
-                
+
+        <button @click="reqGET" class="border rounded bg-gray-50 p-1 mx-1">Pegar bandas (GET)</button>
+        <button @click="reqPOST" class="border rounded bg-gray-50 p-1 mx-1">Incluir bandas (POST)</button>
+        <button @click="reqPUT" class="border rounded bg-gray-50 p-1 mx-1">Alterar bandas (PUT)</button>
+        <button @click="reqDELETE" class="border rounded bg-gray-50 p-1 mx-1">Remover bandas (DELETE)</button>
+
+        <div class="grid grid-cols-3 justify-start px-2">
+            <div class="border rounded px-2 my-2 bg-gray-100">
+                Resposta do servidor:
+                <div class="border rounded px-2 my-2 bg-white">
+                    {{mensagem}}
+                </div>
             </div>
         </div>
+
     </div>
 
+
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    titulo: 'Teste API',
+                    mensagem: "sem mensagem...."
+                }
+            },
+            methods: {
+                reqGET() {
+                    console.log("cliquei no botão GET");
+                    this.mensagem = "GET";
+                },
+                reqPOST() {
+                    console.log("cliquei no botão POST");
+                    this.mensagem = "POST";
+                },
+                reqPUT() {
+                    console.log("cliquei no botão PUT");
+                    this.mensagem = "PUT";
+                },
+                reqDELETE() {
+                    console.log("cliquei no botão DELETE");
+                    this.mensagem = "DELETE";
+                }
+            }
+        }).mount('#app')
+    </script>
 </body>
 
 </html>
