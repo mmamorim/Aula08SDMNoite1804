@@ -48,8 +48,17 @@
             },
             methods: {
                 reqGET() {
+                    let self = this;
                     console.log("cliquei no botão GET");
                     this.mensagem = "GET";
+                    axios.get('http://localhost:4040/api/v1/filmes')
+                        .then(function (response) {
+                            console.log(response.data);
+                            self.mensagem = JSON.stringify(response.data);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 },
                 reqPOST() {
                     console.log("cliquei no botão POST");

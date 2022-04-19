@@ -1,7 +1,7 @@
 
 import config from "config"
 import express from "express"
-import bodyParser from "body-parser" 
+import cors from "cors"
 
 console.log("Abrindo super hiper servidor...");
 
@@ -11,6 +11,7 @@ let port = config.get("server.port");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 import bandRoute from "./routes/bandas-rock.js"
 bandRoute(app,config)
