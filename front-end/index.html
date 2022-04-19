@@ -23,7 +23,6 @@
         <button @click="reqGET" class="border rounded bg-gray-50 p-1 mx-1">Pegar bandas (GET)</button>
         <button @click="reqPOST" class="border rounded bg-gray-50 p-1 mx-1">Incluir bandas (POST)</button>
         <button @click="reqPUT" class="border rounded bg-gray-50 p-1 mx-1">Alterar bandas (PUT)</button>
-        <button @click="reqDELETE" class="border rounded bg-gray-50 p-1 mx-1">Remover bandas (DELETE)</button>
 
         <div class="grid grid-cols-3 justify-start px-2">
             <div class="border rounded px-2 my-2 bg-gray-100">
@@ -31,12 +30,14 @@
                 <div class="border rounded px-2 my-2 bg-white">
                     {{mensagem}}
                     <div class="border rounded px-2 my-2 bg-white">
-                        <div v-for="(elem,index) in lista">
+                        <div v-for="(elem,index,key) in lista" :key="key">
                             <span class="mr-1 font-bold">id:</span>
                             <span>{{elem.id}}</span>
                             <span class="mx-1 font-bold">name:</span>
                             <span>{{elem.name}}</span>
-                            <button @click="reqDELETE(elem.id)" class="border rounded bg-gray-100 ml-2">excluir</button>
+                            <button @click="reqDELETE(elem.id)" class="text-xs border rounded bg-red-300 px-1 ml-2">
+                                <span style="font-size: 7pt;">❌</span> excluir
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -49,6 +50,10 @@
                 <div class="my-2">
                     <span>Name:</span> <input type="text" v-model="name">
                 </div>
+                <button @click="reqPOST" class="text-sm border rounded bg-gray-50 px-1 ml-2">
+                    <span style="font-size: 9pt;">➕</span>
+                    Incluir (POST)
+                </button>
             </div>
         </div>
 
@@ -66,6 +71,9 @@
                     id: "",
                     name: ""
                 }
+            },
+            mounted() {
+                this.reqGET();
             },
             methods: {
                 reqGET() {
@@ -109,6 +117,7 @@
                     this.mensagem = "PUT";
                 },
                 reqDELETE(id) {
+                    let self = this;
                     console.log("cliquei no botão DELETE", id);
                     this.mensagem = "DELETE";
                     let bodyFormData = new URLSearchParams();
@@ -122,7 +131,6 @@
                         console.log(response.data);
                         self.mensagem = "POST ok!";
                         self.lista = response.data;
-                        self.$forceUpdate();
                     }).catch(function (error) {
                         console.log(error);
                     });

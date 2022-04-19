@@ -19,6 +19,10 @@
     "filme05": {
       "id": "filme05",
       "name": "Matrix"
+    },
+    "filme06": {
+      "id": "filme06",
+      "name": "Gladiador"
     }
   },
   "bandasrock": {
