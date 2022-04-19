@@ -11,6 +11,14 @@
     "filme03": {
       "id": "filme03",
       "name": "ET - Extra terrestre"
+    },
+    "filme04": {
+      "id": "filme04",
+      "name": "Uma linda mulher"
+    },
+    "filme05": {
+      "id": "filme05",
+      "name": "Matrix"
     }
   },
   "bandasrock": {
